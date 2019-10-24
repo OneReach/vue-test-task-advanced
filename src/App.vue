@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="box">asdasd</div>
+    <div class="box">asdasd</div>
   </div>
 </template>
 
