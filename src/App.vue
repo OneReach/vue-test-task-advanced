@@ -1,28 +1,33 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <div class="box">asdasd</div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
+  name: 'Autocomplete app'
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+body {
+  background: #fff;
+  margin: 0;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+.box {
+  position: relative;
+  width: 600px;
+  padding: 45px 20px;
+  background: #f4f5fa;
+  margin: 50px auto;
+  border-radius: 5px;
+}
+
 </style>
