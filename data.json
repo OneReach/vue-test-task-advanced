@@ -1,0 +1,12 @@
+{
+    "simpsons": [
+      { "id": 1, "name": "Barney Gumble", "img": "" },
+      { "id": 2, "name": "Bart Simpson", "img": "" },
+      { "id": 3, "name": "Clancy Wiggam", "img": "" },
+      { "id": 4, "name": "Homer Simpson", "img": "" },
+      { "id": 5, "name": "Lisa Simpson", "img": "" },
+      { "id": 6, "name": "Maggie Simpson", "img": "" },
+      { "id": 7, "name": "Marge Simpson", "img": "" },
+      { "id": 8, "name": "Ned Flanders", "img": "" },
+      { "id": 9, "name": "Ralf Wiggam", "img": "" }
+    ]
