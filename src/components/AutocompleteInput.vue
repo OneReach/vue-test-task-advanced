@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="inputBox" :class="{'inputBox--focused' : isFocused}">
-
       <div class="inputBox__input">
         <input
           ref="inputElem"
@@ -13,7 +12,25 @@
       </div>
 
       <div class="inputBox__controls">
-        <button @click="clearInputText" class="input-control-btn">X</button>
+        <button v-if="searchText.length > 0" @click="clearInputText" class="input-control-btn">
+          <svg
+            style="width: 20px; height: 20px; margin-top: 5px;"
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fas"
+            data-icon="times"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 352 512"
+            class="svg-inline--fa fa-times fa-w-11 fa-lg"
+          >
+            <path
+              fill="currentColor"
+              d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+              class
+            />
+          </svg>
+        </button>
       </div>
 
       <div v-if="suggestionsVisibility" class="inputBox__suggestiongs">
@@ -23,7 +40,6 @@
           <slot name="suggestion" :suggestion="suggestion" />
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -56,14 +72,20 @@ export default {
 
       if (val.length === 0) {
         this.hideSuggestions();
+        this.isFocused = true;
       } else {
         this.showSuggestions();
       }
 
+      this.loadSuggestions(val);
+    }
+  },
+  methods: {
+    loadSuggestions(val) {
       if (this.prevPromise !== null) {
         this.prevPromise.abort();
       }
-
+      
       this.getItems(val)
         .then(result => {
           this.prevPromise = result;
@@ -73,17 +95,14 @@ export default {
           this.suggestions = result;
           this.prevPromise = null;
         });
-    }
-  },
-  methods: {
+    },
     hideSuggestions() {
       this.isFocused = false;
-
       this.suggestionsVisibility = false;
     },
     showSuggestions() {
       this.isFocused = true;
-      
+
       if (this.searchText.length > 0) {
         this.suggestionsVisibility = true;
       }
@@ -140,14 +159,15 @@ export default {
 }
 
 .input-control-btn {
-  padding: 15px;
   cursor: pointer;
   outline: none;
   border: none;
+  opacity: 0.5;
+  padding: 0 10px;
   background: transparent;
 
   &:hover {
-    background: #f2f2f2;
+    opacity: 1;
   }
 }
 
