@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="inputBox">
+    <div class="inputBox" :class="{'inputBox--focused' : isFocused}">
+
       <div class="inputBox__input">
         <input
           ref="inputElem"
@@ -10,19 +11,19 @@
           type="text"
         />
       </div>
+
       <div class="inputBox__controls">
         <button @click="clearInputText" class="input-control-btn">X</button>
       </div>
 
       <div v-if="suggestionsVisibility" class="inputBox__suggestiongs">
+        <div v-if="suggestions.length === 0" class="no-results">Nothing found</div>
 
         <div :key="suggestion.id" v-for="suggestion in suggestions" class="search-result">
-          <div class="search-result__img">
-            <img :src="suggestion.img"/>
-          </div>
-          <div class="search-result__label">{{ suggestion.name }}</div>
+          <slot name="suggestion" :suggestion="suggestion" />
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -45,7 +46,8 @@ export default {
       searchText: this.value,
       suggestions: [],
       suggestionsVisibility: false,
-      prevPromise: null
+      prevPromise: null,
+      isFocused: false
     };
   },
   watch: {
@@ -58,7 +60,7 @@ export default {
         this.showSuggestions();
       }
 
-      if(this.prevPromise !== null) {
+      if (this.prevPromise !== null) {
         this.prevPromise.abort();
       }
 
@@ -70,15 +72,18 @@ export default {
         .then(result => {
           this.suggestions = result;
           this.prevPromise = null;
-          console.log(this.suggestions)
         });
     }
   },
   methods: {
     hideSuggestions() {
+      this.isFocused = false;
+
       this.suggestionsVisibility = false;
     },
     showSuggestions() {
+      this.isFocused = true;
+      
       if (this.searchText.length > 0) {
         this.suggestionsVisibility = true;
       }
@@ -93,7 +98,7 @@ export default {
 <style lang="scss" scoped>
 .inputBox {
   background: #fff;
-  border: 1px solid #c2e3f2;
+  border: 1px solid #e6e6e6;
   border-radius: 3px;
   display: flex;
   justify-content: space-between;
@@ -101,6 +106,11 @@ export default {
   position: relative;
   background: #f5f5f5;
   cursor: text;
+
+  &--focused {
+    border: 1px solid #c2e3f2;
+    background: #fff;
+  }
 
   &__input {
     width: 100%;
@@ -164,8 +174,11 @@ export default {
       height: 100%;
     }
   }
+}
 
-  &__label {
-  }
+.no-results {
+  text-align: center;
+  padding: 25px 0;
+  color: grey;
 }
 </style>
