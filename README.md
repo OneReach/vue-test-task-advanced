@@ -1,3 +1,18 @@
+# COMMENTS
+
+Autocomplete works with any apis, just specify endpoint which filters all data by String -> ./src/assets/js/helpers/get-items.js
+
+In this test case I used API from https://restcountries.eu/
+
+Added structured styling with global mixins and variables
+
+Autocomplete (as for me, better naming of component is "Filtered Select") accepted one more prop: title
+
+All requirements is done + demo
+
+[Video Demo](docs/demo.mov)
+
+
 # SETUP
 
 ## Project setup
