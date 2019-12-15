@@ -74,7 +74,7 @@ export default {
     async handleInput() {
       try {
         let res = await this.getItems(this.search).resolve();
-        if (res && !!this.search) {
+        if (res && this.search) {
           this.filteredItems = res;
           this.isOpenSelect = true;
         }
