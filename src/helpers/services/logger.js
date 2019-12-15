@@ -1,5 +1,2 @@
 /* eslint-disable */
-
-export const logger = (...e) => {
-  return console.log(...e);
-}
+export const logger = (...e) => console.log(...e);
