@@ -22,11 +22,7 @@ const filteredItems = value =>
 
 export const getItems = value => {
   return {
-    resolve: () => {
-      return new Promise(resolve => {
-        resolve(filteredItems(value));
-      });
-    },
+    resolve: () => new Promise(resolve => resolve(filteredItems(value))),
     abort: () => {},
   };
 };
