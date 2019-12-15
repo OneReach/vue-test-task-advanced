@@ -1,19 +1,17 @@
 <template>
-  <div class="base-input__container">
-    <div class="base-input__wrap">
-      <input
-        v-model.trim="search"
-        type="search"
-        class="base-input"
-        placeholder="Search"
-        @input="handleInput"
-      />
-    </div>
-    <ul v-show="isItems" class="base-input__list">
+  <div class="base-select__container">
+    <input
+      v-model.trim="search"
+      type="search"
+      class="base-select"
+      placeholder="Search"
+      @input="handleInput"
+    />
+    <ul v-show="isItems" class="base-select__list">
       <li
         v-for="item in filteredItems"
         :key="item.uuid"
-        class="base-input__item"
+        class="base-select__item"
         @click="handleClickOption(item.text)"
       >
         <slot :item="item"></slot>
@@ -102,7 +100,7 @@ export default {
 </script>
 
 <style lang="scss">
-.base-input {
+.base-select {
   width: 100%;
   height: 100%;
   border: none;
@@ -116,18 +114,10 @@ export default {
     position: relative;
     border-radius: 0.25rem;
     border: 1px solid var(--light-gray-color);
-
+    padding: 0.2rem 1rem;
     &:focus {
       outline: none;
     }
-  }
-
-  &__wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.2rem 1rem;
-    height: inherit;
   }
 
   &__list {
@@ -171,25 +161,6 @@ export default {
 
     &:hover {
       background: var(--light-gray-color);
-    }
-
-    img {
-      width: 1.5rem;
-      object-fit: contain;
-      height: auto;
-      border-radius: 50%;
-      margin-left: 0.25rem;
-      margin-right: 0.25rem;
-    }
-
-    span {
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-
-      &:first-child {
-        margin-left: 2rem;
-      }
     }
   }
 }
