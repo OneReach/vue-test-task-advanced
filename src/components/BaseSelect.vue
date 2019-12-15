@@ -135,16 +135,16 @@ export default {
     padding: 0;
 
     &::-webkit-scrollbar {
-      width: 4px;
+      width: 0.25rem;
     }
 
     &::-webkit-scrollbar-track {
-      width: 4px;
+      width: 0.25rem;
       background: var(--light-gray-color);
     }
 
     &::-webkit-scrollbar-thumb {
-      width: 4px;
+      width: 0.25rem;
       background: var(--dark-gray-color);
       border-radius: 2px;
     }
