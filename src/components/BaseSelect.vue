@@ -115,9 +115,6 @@ export default {
     border-radius: 0.25rem;
     border: 1px solid var(--light-gray-color);
     padding: 0.2rem 1rem;
-    &:focus {
-      outline: none;
-    }
   }
 
   &__list {
